@@ -1,5 +1,4 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -21,15 +20,14 @@ dotenv.config();
 app.use(cors());
 
 //middleware to parse requests
-// app.use(express.json());
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
 
 /**
  * Handling Routes
- * /managediscounts -> For admin to be able to configure the group discounts
- * /user/register -> To add the user to the database
+ * /discounts -> For admin to be able to configure the group discounts
+ * /user -> To add the user to the database
  *  * 
  */
 
@@ -45,11 +43,6 @@ mongoose.connect(`mongodb+srv://sra1_rdy7:${process.env.MONGO_ATLAS_DB_PWD}@clus
 {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
 .then(() => console.log('database connection successfully established!'))
 .catch(err => console.log('database connection failed!' , err));
-
-// const connection = mongoose.connection;
-// connection.once('open', ()=>console.log('database connection successfully established!'));
-
-
 
 
 const port = process.env.PORT || 3000;

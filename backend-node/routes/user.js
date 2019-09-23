@@ -8,7 +8,7 @@ import mongoose from 'mongoose';
 
 const userRouter = express.Router();
 
-
+// get the user list
 userRouter.get('/', (req,res,next)=>{
     User.find()
     .exec()
@@ -26,7 +26,7 @@ userRouter.get('/', (req,res,next)=>{
     })    
 });
 
-
+// get the single user
 userRouter.get('/:id', (req,res,next)=>{
     User.findById(req.params.id)
     .exec()
@@ -42,7 +42,7 @@ userRouter.get('/:id', (req,res,next)=>{
 
            
 });
-
+// adding user to the database
 userRouter.post('/', (req,res,next) => {
 let user = new User({
     _id: new mongoose.Types.ObjectId(),
@@ -80,6 +80,7 @@ let emailInfo = `<h1>Hi ${req.body.name},</h1>
 
 });
 
+//remove the user: test purpose
 userRouter.delete('/:id', (req,res,next) =>{
     const id = req.params.id;
     User.deleteOne({_id: id})

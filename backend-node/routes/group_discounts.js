@@ -8,7 +8,7 @@ import group_discounts from '../models/group_discounts';
 
 const groupDiscountRouter = express.Router();
 
-var status = [];
+var status = String;
 //Handling get requests to group discounts
 groupDiscountRouter.get('/', (req,res,next)=>{
     GroupDiscount.find()
@@ -21,7 +21,7 @@ groupDiscountRouter.get('/', (req,res,next)=>{
                 let dateNow = new Date(Date.now());
                 let endDate = new Date(doc.endDate);
 
-                //For simplicity, comparing date only here, todo compare the date with year and month too
+                //For demo purpose, comparing date only here, todo compare the date with year and month too
                 if(dateNow.getDate() <= endDate.getDate()){
                     status = 'open';
                 } else if(dateNow.getDate() > endDate.getDate()) {
@@ -36,6 +36,7 @@ groupDiscountRouter.get('/', (req,res,next)=>{
         res.status(500).json({error: err});
     });
 });
+//get the associated user list
 groupDiscountRouter.get('/userinfo/:id', (req,res, next) => {
     const id = String(req.params.id);
     GroupDiscount.findOne({_id: id}).populate({path: 'userMeta', select:'name email'}).exec().then(doc => {

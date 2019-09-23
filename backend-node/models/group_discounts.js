@@ -14,7 +14,6 @@ let groupDiscountSchema = new Schema({
         numberOfUsers: Number,
         discountPercent: Number
     }],
-    users: [{fullName: String, email: String}],
     userMeta: [{
          type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
