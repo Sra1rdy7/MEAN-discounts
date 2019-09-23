@@ -1,0 +1,46 @@
+
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="500px" fxFlex.xs="100%">
+        <mat-card-title>Create a new Group Discount</mat-card-title>
+        <form [formGroup]="discountForm" autocomplete="off" novalidate fxLayout="column wrap" (ngSubmit)="createDiscount(discountForm.value)"
+      fxLayoutAlign="center center" fxLayoutGap="20px">
+        <mat-card-content>
+
+                <mat-form-field>
+                        <input matInput type="text" placeholder="Enter University Name Here" formControlName="universityName" id="universityName">
+                        <mat-error *ngIf="hasError('universityName', 'required')">Name is required</mat-error>
+                        <mat-error *ngIf="hasError('universityName', 'maxlength')">You have more than 60 characters</mat-error>
+                      </mat-form-field>
+                      <br>
+                      <mat-form-field>
+                        <input matInput [matDatepicker]="picker" [min]="minDate" placeholder="Choose a Date To End The Discount" formControlName="endDate" id="dateToEnd" 
+                            readonly (click)="picker.open()">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                     <br>
+                     
+
+                        <mat-expansion-panel  >
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                              Discount Rules
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Click to add discount rules 
+                              </mat-panel-description>
+                              
+                         </mat-expansion-panel-header>
+                          <ng-container>
+                            <app-discount-rules [discountForm]="discountForm" *ngFor = "let discount of discounts"></app-discount-rules>
+                          </ng-container>
+                          <button type="button" mat-raised-button color="primary" (click)="toggleDiscountRules()">Add More Rules</button>
+                        </mat-expansion-panel>
+        </mat-card-content>
+        <mat-card-actions align="center" >
+                <button mat-raised-button color="primary" [disabled]="!discountForm.valid">Create</button>
+                <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+              </mat-card-actions>
+        </form>
+      </mat-card>
+  </section>

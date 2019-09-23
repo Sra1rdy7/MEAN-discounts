@@ -1,0 +1,32 @@
+<div>
+<div class = "jumbotron">
+     <div class="container">
+        <h1> Group Discount For {{university}}</h1>
+        <p *ngIf="totalUsers">Total Users in Group: {{totalUsers}}</p>
+        <p>Discount Ends On {{endDate | date}}</p>
+     </div>
+        </div>
+      <div class="row">
+        
+      <div class="column">
+          <section fxLayout="row wrap" fxLayoutAlign="center center">
+              <mat-card fxFlex="500px" fxFlex.xs="100%">
+                  <mat-card-title>Signup Form</mat-card-title>
+          <form [formGroup]="signUpForm" autocomplete="on"  fxLayout="column wrap" (ngSubmit)="createUser(signUpForm.value)"
+          fxLayoutAlign="center center" fxLayoutGap="20px">
+          <mat-form-field>
+              <input matInput type="text" placeholder="Enter Your Name Here" formControlName="fullName" id="fullName">
+              <mat-error *ngIf="hasError('fullName', 'required')">Name is required</mat-error>
+            </mat-form-field>
+          <mat-form-field>
+              <input matInput type="email" placeholder="Enter Your Email Here" formControlName="email" id="email">
+              <mat-error *ngIf="hasError('email', 'required')">Email is required</mat-error>
+            </mat-form-field>
+            <mat-card-actions align="center" >
+                <button mat-raised-button color="primary" [disabled]="!signUpForm.valid">{{signUpBtnText}}</button>
+              </mat-card-actions>
+        </form>
+              </mat-card>
+              </section>
+        </div>
+      </div>

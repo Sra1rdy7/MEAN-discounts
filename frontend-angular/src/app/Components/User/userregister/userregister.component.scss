@@ -1,0 +1,53 @@
+.jumbotron { 
+    padding: 30px; /* fills out the jumbotron */
+    background-color: #111;
+    background-size: cover;
+    
+  
+  
+  .container {
+    width: 100%; /* specify a width */
+    margin: 0 auto;  /* centers the container */
+    padding: 0 15px; /* adds some padding to the left and right*/
+  }
+  
+  &.container { 
+    max-width: 100%; /* allows the jumbotron to adjust on smaller widths */
+    background-color: #222;
+  }
+  
+  h1 { 
+    text-align: center; /* centers the heading */
+    color: #DDD;
+    font-family: 'Raleway', Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+
+  }
+  p {
+    text-align: center; /* centers the heading */
+    color: #DDD;
+    font-family: 'Raleway', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+@media screen and (min-width: 800px) {
+  .column {
+    flex: 1
+  }
+}
+ 
